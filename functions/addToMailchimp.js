@@ -2,7 +2,7 @@ const client = require('@mailchimp/mailchimp_marketing');
 
 client.setConfig({
     apiKey: process.env.MAILCHIMP_API_KEY,
-    server: 'us1'
+    server: 'us2'
 });
 
 exports.handler = async (event) => {
