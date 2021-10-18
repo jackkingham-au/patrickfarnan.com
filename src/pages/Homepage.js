@@ -7,7 +7,7 @@ const Homepage = () => {
 
     return (
         <>
-            <Box sx={{position: 'relative', top: '-63.81px', zIndex: 10}}>
+            <Box sx={{position: 'relative', zIndex: 10}}>
                 <Image src="/assets/running.jpg" alt="Patrick Farnan Running" type="hero" />
                 <Typography variant="h2" children="I Help Dissatisfied Achievers to Reset & Perform." sx={{color: 'common.white',position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)'}} />
             </Box>

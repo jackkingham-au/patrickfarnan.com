@@ -1,3 +1,4 @@
+// Validate Individual Field
 const validateType = {
     specialChars: /^[a-z'"-\s]+$/gi,
     email: /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/,
@@ -28,3 +29,9 @@ export const validate = (value, type, setHelper, setError, setValid) => {
         setValid(true);
     }
 };
+
+// Validate Form
+export const validateSubmit = formData => {
+    const errrors = Object.values(formData).filter(val => val === '');
+    return errrors;
+}

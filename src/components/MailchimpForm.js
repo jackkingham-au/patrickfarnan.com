@@ -3,12 +3,13 @@ import { Grid, List, ListItem, ListItemText, ListItemIcon, Typography, Alert } f
 import Input from './core/Input';
 import CustomButton from './core/CustomButton';
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
+import { validateSubmit } from '../helpers/validate';
 
 const MailchimpForm = ({title, detailed}) => {
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
-    const [global, setGlobal] = useState({
+    const [formData, setFormData] = useState({
         first: '',
         last: '',
         email: '',
@@ -20,9 +21,9 @@ const MailchimpForm = ({title, detailed}) => {
         e.preventDefault();
     
         // Check All Fields Are Valid and Correct
-        const fieldErrors = await Object.values(global).filter(val => val === '');
+        const formErrors = await validateSubmit(formData);
 
-        if(fieldErrors.length > 0) {
+        if(formErrors.length > 0) {
             setError('All fields are required to sign up.')
             setLoading(false);
         } else {
@@ -30,15 +31,13 @@ const MailchimpForm = ({title, detailed}) => {
             const addToMailchimp = async () => {
                 const response = await fetch('.netlify/functions/addToMailchimp', {
                     method: 'POST',
-                    body: JSON.stringify(global)
+                    body: JSON.stringify(formData)
                 });
                 const result = await response.json();
                 return result;
             }
 
             const result = await addToMailchimp();
-
-            console.log(result)
 
             if(result.result) {
                 setSuccess('You\'ve successfully joined the email list!');
@@ -60,13 +59,13 @@ const MailchimpForm = ({title, detailed}) => {
                         <form noValidate onSubmit={handleSubmit}>
                             <Grid container spacing={2}>
                                 <Grid item xs={12} md={6}>
-                                    <Input setGlobal={setGlobal} label="First Name" name="first" validation="specialChars" />
+                                    <Input setFormData={setFormData} label="First Name" name="first" validation="specialChars" />
                                 </Grid>
                                 <Grid item xs={12} md={6}>
-                                    <Input setGlobal={setGlobal} label="Last Name" name="last" validation="specialChars" />
+                                    <Input setFormData={setFormData} label="Last Name" name="last" validation="specialChars" />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Input setGlobal={setGlobal} label="Email Address" name="email" validation="email" />
+                                    <Input setFormData={setFormData} label="Email Address" name="email" validation="email" />
                                 </Grid>
                                 <Grid item xs={12}>
                                     {(error) ? <Alert severity="error" children={error} sx={{mb: 2}} /> : ''}

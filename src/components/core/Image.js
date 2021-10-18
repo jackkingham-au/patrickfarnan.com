@@ -10,8 +10,9 @@ const Logo = styled('img')({
 
 const Hero = styled('img')({
     width: '100%',
-    height: '100vh',
+    height: 'calc(100vh - 63.81px)',
     filter: 'brightness(80%)',
+    objectFit: 'cover',
 });
 
 const Default = styled('img')({
@@ -20,7 +21,7 @@ const Default = styled('img')({
     display: 'block',
 });
 
-const Image = ({type, src, alt, width, styles}) => {
+const Image = ({type, src, alt, styles}) => {
 
     switch(type) {
         case 'logo':

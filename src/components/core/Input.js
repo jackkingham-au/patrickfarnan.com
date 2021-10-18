@@ -2,7 +2,7 @@ import React, { useState }  from 'react';
 import { TextField } from '@mui/material';
 import { validate } from '../../helpers/validate';
 
-const Input = ({name, label, validation, setGlobal}) => {
+const Input = ({name, label, validation, setFormData}) => {
     const [value, setValue] = useState('');
     const [helper, setHelper] = useState('');
     const [error, setError] = useState(false);
@@ -10,10 +10,13 @@ const Input = ({name, label, validation, setGlobal}) => {
 
     const handleChange = e => {
         setValue(e.target.value)
-        setGlobal(prev => ({
-            ...prev,
-            [e.target.name]: e.target.value
-        }));
+        validate(e.target.value, validation, setHelper, setError, setValid);
+        if(valid) {
+            setFormData(prev => ({
+                ...prev,
+                [e.target.name]: e.target.value
+            }));
+        }
     }
 
     return (
@@ -27,7 +30,6 @@ const Input = ({name, label, validation, setGlobal}) => {
             label={label}
             required
             fullWidth
-            onBlur={e => validate(e.target.value, validation, setHelper, setError, setValid)}
             sx={{
                 '& input:valid + fieldset': {
                     borderColor: '#00e676',
