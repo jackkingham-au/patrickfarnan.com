@@ -28,6 +28,7 @@ const Input = ({name, label, validation, setFormData}) => {
             valid={valid}
             name={name}
             label={label}
+            onBlur={e => handleChange(e)}
             required
             fullWidth
             sx={{

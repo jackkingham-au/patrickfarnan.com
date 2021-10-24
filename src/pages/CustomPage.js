@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { client } from '../helpers/sanity';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { client, urlToTitle } from '../helpers/sanity';
 import LoadingScreen from '../components/core/LoadingScreen';
+import NotFound from '../components/core/NotFound';
 import BlockContent from '../components/blocks/BlockContent';
 
-const Homepage = () => {
+const CustomPage = () => {
+    const {customPage} = useParams();
     const [page, setPage] = useState(null);
 
     useEffect(() => {
         const getPage = async () => {
-            const result = await client.fetch(`*[_type == 'homepage']`);
+            const result = await client.fetch(`*[_type == 'pages' && title == '${urlToTitle(customPage)}']`);
             setPage(result[0]);
         }
 
@@ -21,7 +24,9 @@ const Homepage = () => {
         return (
             <BlockContent content={page.content} />
         );
+    } else {
+        return <NotFound />
     }
 }
 
-export default Homepage;
+export default CustomPage;

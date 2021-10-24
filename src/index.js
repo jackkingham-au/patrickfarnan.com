@@ -4,6 +4,7 @@ import App from './App';
 import { CssBaseline } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from './theme';
+import './app.css';
 
 render(
     <React.StrictMode>

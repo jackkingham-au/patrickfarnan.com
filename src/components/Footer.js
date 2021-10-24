@@ -21,7 +21,7 @@ import GroupsIcon from '@mui/icons-material/Groups';
 
 const Footer = () => {
     return (
-        <Box component="footer" sx={{py: 4, px: 1, bgcolor: 'secondary.main'}}>
+        <Box component="footer" sx={{py: 4, px: 1, bgcolor: 'secondary.main', mt: 2}}>
             <Container>
                 <Image src="/assets/patrick-farnan-logo.png" alt="Patrick Farnan Logo" type="logo" />
                 <Grid container>

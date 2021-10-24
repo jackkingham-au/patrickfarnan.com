@@ -1,6 +1,7 @@
 // Generate Any Variation of Image on the Website
 import React from 'react';
 import { styled } from '@mui/system';
+import { Container } from '@mui/material';
 
 const Logo = styled('img')({
     maxWidth: 250,
@@ -11,8 +12,8 @@ const Logo = styled('img')({
 const Hero = styled('img')({
     width: '100%',
     height: 'calc(100vh - 63.81px)',
-    filter: 'brightness(80%)',
     objectFit: 'cover',
+    filter: 'brightness(80%)'
 });
 
 const Default = styled('img')({
@@ -29,7 +30,11 @@ const Image = ({type, src, alt, styles}) => {
         case 'hero':
             return <Hero src={src} alt={alt} sx={styles} />
         default:
-            return <Default src={src} alt={alt} sx={styles} />
+            return (
+                <Container sx={styles}>
+                    <Default src={src} alt={alt} sx={styles} />
+                </Container>
+            );
     }
 }
 

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Grid, List, ListItem, ListItemText, ListItemIcon, Typography, Alert } from '@mui/material';
-import Input from './core/Input';
-import CustomButton from './core/CustomButton';
+import { Grid, List, ListItem, ListItemText, ListItemIcon, Typography, Alert, Container } from '@mui/material';
+import Input from '../core/Input';
+import CustomButton from '../core/CustomButton';
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
-import { validateSubmit } from '../helpers/validate';
+import { validateSubmit } from '../../helpers/validate';
 
-const MailchimpForm = ({title, detailed}) => {
+const MailchimpForm = ({block}) => {
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
@@ -49,13 +49,13 @@ const MailchimpForm = ({title, detailed}) => {
         }
     }
 
-    if(detailed) {
-        return (
-            <>
-                <Typography align="center" variant="h3" children={title} />
+    return (
+        <>
+            <Container sx={{py: 2}}>
+                <Typography align="center" variant="h3" children={block.title} />
                 <Grid container spacing={2} alignItems="center">
                     <Grid item xs={12} md={6}>
-                        <Typography variant="h5" children="Type your details here..." sx={{my: 2}} />
+                        <Typography variant="h5" children={(block.subtitle) ? block.subtitle : 'Type your details here...'} sx={{my: 2}} />
                         <form noValidate onSubmit={handleSubmit}>
                             <Grid container spacing={2}>
                                 <Grid item xs={12} md={6}>
@@ -70,7 +70,7 @@ const MailchimpForm = ({title, detailed}) => {
                                 <Grid item xs={12}>
                                     {(error) ? <Alert severity="error" children={error} sx={{mb: 2}} /> : ''}
                                     {(success) ? <Alert severity="success" children={success} sx={{mb: 2}} /> : ''}
-                                    <CustomButton size="large" submit loading={loading}>Sign Me Up</CustomButton>
+                                    <CustomButton fullWidth size="large" submit loading={loading}>Sign Me Up</CustomButton>
                                 </Grid>
                             </Grid>
                         </form>
@@ -104,9 +104,9 @@ const MailchimpForm = ({title, detailed}) => {
                         </List>
                     </Grid>
                 </Grid>
-            </>
-        );
-    }
+            </Container>
+        </>
+    );
 }
 
 export default MailchimpForm;
