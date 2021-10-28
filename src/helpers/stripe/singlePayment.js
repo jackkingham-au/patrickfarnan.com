@@ -18,6 +18,7 @@ const confirmPayment = async (clientSecret, stripe, elements, CardElement, formD
                 },
                 name: `${formData.first.toUpperCase()} ${formData.last.toUpperCase()}`,
                 email: formData.email,
+                phone: formData.phone
             }
         }
     });

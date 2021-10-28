@@ -16,7 +16,13 @@ const stripePromise = loadStripe('pk_test_rCLBczK31p9gB4XuuLXnv17p00UBGlD13V');
 const Checkout = () => {
     const cart = getCart();
     const cartCount = countCart(cart);
-    const [services, setServices] = useState(null);     
+
+    // Services Refer to Single Payments
+    const [services, setServices] = useState(null);   
+    
+    // Subscriptions Refer to Recurring Payments
+    const [subscriptions, setSubscriptions] = useState(null);  
+
     const [totals, setTotals] = useState(null);
     const [success, setSuccess] = useState('https://patrickfarnan.com/thank-you');
 
@@ -24,8 +30,11 @@ const Checkout = () => {
         if(cart) {
             const process = async () => {
                 const result = await getServices(cart);
-                setTotals(calculateTotals(result, cartCount));
-                setServices(result);
+                const singleServices = result.filter(service => !service.paymentType.subscription);
+                const recurringServices = result.filter(service => service.paymentType.subscription);
+                setTotals(calculateTotals(singleServices, cartCount));
+                setServices(singleServices);
+                setSubscriptions(recurringServices);
             }
 
             process();
@@ -43,12 +52,12 @@ const Checkout = () => {
             <Container sx={{my: 3}}>
                 <Grid container spacing={3}>
                     <Grid item xs={12} md={6}>
-                        <CheckoutItems cartCount={cartCount} services={services} totals={totals} setSuccess={setSuccess} />
+                        <CheckoutItems cartCount={cartCount} services={services} totals={totals} setSuccess={setSuccess} subscriptions={subscriptions} />
                         <ClearCart /> 
                     </Grid>
                     <Grid item xs={12} md={6}>
                         <Elements stripe={stripePromise} options={{fonts: [{cssSrc: 'https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap', family: 'Source Sans Pro', weight: '300'}], theme: 'stripe'}}>
-                            <CheckoutForm totals={totals} success={success} />
+                            <CheckoutForm totals={totals} success={success} subscriptions={subscriptions} services={services} />
                         </Elements>
                     </Grid>
                 </Grid>

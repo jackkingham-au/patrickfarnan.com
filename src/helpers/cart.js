@@ -11,7 +11,7 @@ export const setCart = addedServices => {
     const services = addedServices.map(service => service._ref);
 
     const prevCart = getCart();
-
+    
     if(!prevCart) {
         document.cookie = `cart=${JSON.stringify(services)}`;
     } else {

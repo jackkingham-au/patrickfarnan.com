@@ -7,10 +7,33 @@ import { useElements, useStripe, CardElement } from '@stripe/react-stripe-js';
 import { validateSubmit } from '../../helpers/validate';
 import { processSinglePayment } from '../../helpers/stripe/singlePayment';
 import { cardStyles, handleCardElement } from '../../helpers/stripe/card';
+import { processSubscription } from '../../helpers/stripe/subscription';
 
-const CheckoutForm = ({totals, success}) => {
+const CheckoutForm = ({totals, success, subscriptions, services}) => {
     const stripe = useStripe();
     const elements = useElements();
+
+    const [singleSuccess, setSingleSuccess] = useState(false);
+    const [subscriptionSuccess, setSubscriptionSuccess] = useState(false);
+
+    // Redirect to Success Page
+    useEffect(() => {
+        if(subscriptionSuccess || singleSuccess ) {
+            if(services.length > 0 && subscriptions.length > 0) {
+                if(subscriptionSuccess && singleSuccess) {
+                    window.location.replace(success);
+                }
+            } else if(services.length > 0 && subscriptions.length === 0) {
+                if(singleSuccess) {
+                    window.location.replace(success);
+                }
+            } else if(subscriptions.length > 0 && services.length === 0) {
+                if(subscriptionSuccess) {
+                    window.location.replace(success);
+                }
+            }
+        }
+    }, [singleSuccess, subscriptionSuccess]);
 
     const [loading, setLoading] = useState(false);
 
@@ -37,15 +60,26 @@ const CheckoutForm = ({totals, success}) => {
 
     useEffect(() => {
         const process = async () => {
-            // Single Payment
-            const result = await processSinglePayment(stripe, elements, CardElement, formData, totals);
 
-            if(!result) {
-                setLoading(false);
-                setCheckoutError('There was an error processing this payment. Please try again later.');
-            } else {
-                // Redirect to Success Page
-                window.location.replace(success);
+            // Single Payment
+            if(services.length > 0 && singleSuccess === false) {
+                const result = await processSinglePayment(stripe, elements, CardElement, formData, totals);
+
+                if(!result) {
+                    setLoading(false);
+                    setCheckoutError('There was an error processing this payment. Please try again later.');
+                } else {
+                    setSingleSuccess(true);
+                } 
+            }
+
+            // Subscriptions
+            if(subscriptions.length > 0 && subscriptionSuccess === false) {
+                const result = await processSubscription(stripe, elements, CardElement, formData, subscriptions, setCheckoutError, setLoading);
+                
+                if(result) {
+                    setSubscriptionSuccess(true);
+                }
             }
         }
 
@@ -116,6 +150,8 @@ const CheckoutForm = ({totals, success}) => {
                     {(cardError) ? <Typography variant="caption" children={cardError} sx={{color: '#d32f2f', mx: 2}} /> : ''}
                 </Grid>
                 <Grid item xs={12}>
+                    {(singleSuccess) ? <Alert sx={{mb: 1}} severity="success" children="Your single, once-off payments have successfully been processed." /> : ''}
+                    {(subscriptionSuccess) ? <Alert sx={{mb: 1}} severity="success" children="Your subscription(s) have successfully been created." /> : ''}
                     {(checkoutError) ? <Alert sx={{mb: 1}} severity="error" children={checkoutError} /> : ''}
                     <CustomButton fullWidth size="large" submit loading={loading}>Invest Now</CustomButton>
                 </Grid>

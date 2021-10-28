@@ -1,7 +1,7 @@
 import React from 'react';
 import { Divider, Box, Typography, Stack, Skeleton } from '@mui/material';
 
-const Prices = ({totals, loading}) => {
+const Prices = ({totals, loading, subscriptions}) => {
 
     if(loading) {
         return (
@@ -29,7 +29,7 @@ const Prices = ({totals, loading}) => {
 
         return (
             <Box sx={{my: 2}}>
-                <Divider />
+                <Divider>{(subscriptions) ? 'TO BE CHARGED NOW' : ''}</Divider>
                 <Box sx={{p: 1}}>
                     <Stack direction="row" justifyContent="space-between">
                         <Typography variant="subtitle1" sx={{fontWeight: 700}} children="SUBTOTAL" />
