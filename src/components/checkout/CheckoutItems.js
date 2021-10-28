@@ -31,7 +31,7 @@ const CheckoutItems = ({services, cartCount, totals, setSuccess, subscriptions})
                 {(subscriptions.length > 0) ? <Subscriptions subscriptions={subscriptions} setSuccess={setSuccess} /> : ''} 
                 {(subscriptions.length > 0 && services.length > 0) ? <TotalPrices subscriptions={subscriptions} services={services} /> : ''} 
                 <Typography variant="body2">    
-                    By proceeding with this purchase, you agree to the terms and conditions, listed <a href="#">here.</a>
+                    By proceeding with this purchase, you agree to the terms and conditions, listed <a href="/assets/Patrick Farnan Coaching - Terms & Conditions.pdf">here.</a>
                 </Typography>
             </Box>
         );
