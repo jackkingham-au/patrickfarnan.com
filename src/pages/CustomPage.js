@@ -11,7 +11,7 @@ const CustomPage = () => {
 
     useEffect(() => {
         const getPage = async () => {
-            const result = await client.fetch(`*[_type == 'pages' && title == '${urlToTitle(customPage)}']`);
+            const result = await client.fetch(`*[_type == 'pages' && title == '${urlToTitle(customPage)}' || _type == 'pages' && title == '${urlToTitle(customPage).toLowerCase()}']`);
             setPage(result[0]);
         }
 
