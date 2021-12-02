@@ -34,7 +34,6 @@ export const processSubscription = async (stripe, elements, CardElement, formDat
         try {
             const results = await Promise.all(subscriptions.map(async service => await startSubscription(formData, service, paymentMethod.paymentMethod.id)));
             const error = results.filter(item => item.error); 
-            debugger;
             if(error.length > 0) {
                 throw 'Error in creating subscription(s) in stripe.'
             } else {
