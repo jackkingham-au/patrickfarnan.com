@@ -40,8 +40,13 @@ const MailchimpForm = ({block}) => {
             const result = await addToMailchimp();
 
             if(result.result) {
-                setSuccess('You\'ve successfully joined the email list!');
-                setLoading(false);
+                if(block.redirect) {
+                    setSuccess('You\'ve successfully joined the email list!');
+                    setTimeout(() => window.location.href = block.redirectUrl, 1000);
+                } else {
+                    setSuccess('You\'ve successfully joined the email list!');
+                    setLoading(false);    
+                }   
             } else {
                 setLoading(false);
                 setError('There was an error adding you to the email list. Please try again later.');

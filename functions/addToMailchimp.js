@@ -29,12 +29,15 @@ exports.handler = async (event) => {
             body: JSON.stringify({result})
         }
     } catch(error) {
+        // Member Already Exists
+        if(error.response.text.match(/Member Exists/)) return {
+            statusCode: 200,
+            body: JSON.stringify({result: 'The user already exists in the list.'})
+        }
+
         return {
             statusCode: 500,
-            body: JSON.stringify({error})
+            body: JSON.stringify({error, exists: error.response.text}),
         }
-    }
-    
-
-    
+    }   
 }
