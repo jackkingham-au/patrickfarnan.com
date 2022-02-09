@@ -10,7 +10,9 @@ exports.handler = async (event) => {
 
     try {
         const addSubscriber = async () => {
-            const response = await client.lists.addListMember(process.env.MAILCHIMP_AUDIENCE_ID, {
+            const audience = (!person.audience) ? process.env.MAILCHIMP_AUDIENCE_ID : process.env.MAILCHIMP_AUDIENCE_ID_ + person.audience.toUpperCase();
+
+            const response = await client.lists.addListMember(audience, {
                 email_address: person.email,
                 status: "subscribed",
                 merge_fields: {

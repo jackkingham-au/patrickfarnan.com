@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Homepage from './pages/Homepage';
 import Checkout from './pages/Checkout';
+import FreeTraining from './pages/FreeTraining';
 import CustomPage from './pages/CustomPage';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Box } from '@mui/material';
@@ -17,6 +18,9 @@ const App = () => {
                     <Switch>
                         <Route path="/checkout">
                             <Checkout />
+                        </Route>
+                        <Route path="/free-training">
+                            <FreeTraining />
                         </Route>
                         <Route path="/:customPage">
                             <CustomPage />
