@@ -60,7 +60,7 @@ const FreeTraining = () => {
                 <Text>DAY 1 - Sunday March 13 @ 6:30pm AEDT</Text>
                 <Text>DAY 2 - Implementation Day</Text>
                 <Text>DAY 3 - Tuesday March 15 @ 6:30pm AEDT</Text>
-                <Text>DAY 4 - Implementation Days</Text>
+                <Text>DAY 4 - Implementation Day</Text>
                 <Text>DAY 5 - Thursday March 17 @ 6:30pm AEDT - FINAL ZOOM GROUP CALL</Text>
             </Box>
             <MailchimpForm audience="training" minimal block={mailchimpData} />
