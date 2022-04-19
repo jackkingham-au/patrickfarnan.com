@@ -1,7 +1,9 @@
 import React from 'react';
 import { Divider, Box, Typography, Stack, Skeleton } from '@mui/material';
 
-const Prices = ({totals, loading, subscriptions}) => {
+const Prices = ({totals, loading, subscriptions, isUsd}) => {
+
+    const usdSuffix = (isUsd) ? ' USD' : '';
 
     if(loading) {
         return (
@@ -33,15 +35,15 @@ const Prices = ({totals, loading, subscriptions}) => {
                 <Box sx={{p: 1}}>
                     <Stack direction="row" justifyContent="space-between">
                         <Typography variant="subtitle1" sx={{fontWeight: 700}} children="SUBTOTAL" />
-                        <Typography variant="subtitle1" sx={{fontWeight: 700}} children={`$${Number(subtotal).toFixed(2)}`} />
+                        <Typography variant="subtitle1" sx={{fontWeight: 700}} children={`$${Number(subtotal).toFixed(2)}${usdSuffix}`} />
                     </Stack>
                     <Stack direction="row" justifyContent="space-between">
                         <Typography variant="subtitle1" sx={{fontWeight: 700}} children="GST (INCLUSIVE)" />
-                        <Typography variant="subtitle1" sx={{fontWeight: 700}} children={`$${Number(gst).toFixed(2)}`} />
+                        <Typography variant="subtitle1" sx={{fontWeight: 700}} children={`$${Number(gst).toFixed(2)}${usdSuffix}`} />
                     </Stack>
                     <Stack direction="row" justifyContent="space-between">
                         <Typography variant="subtitle1" sx={{fontWeight: 700}} children="TOTAL" />
-                        <Typography variant="subtitle1" sx={{fontWeight: 700}} children={`$${Number(total).toFixed(2)}`} />
+                        <Typography variant="subtitle1" sx={{fontWeight: 700}} children={`$${Number(total).toFixed(2)}${usdSuffix}`} />
                     </Stack>
                 </Box>
                 <Divider />

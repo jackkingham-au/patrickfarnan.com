@@ -13,11 +13,11 @@ const setFrequency = freq => {
     }
 }
 
-module.exports = async (service, product) => {
+module.exports = async (service, product, isUsd) => {
 
     try {
         const price = await stripe.prices.create({
-            currency: 'aud',
+            currency: (isUsd) ? 'usd' : 'aud',
             product,
             recurring: {
                 interval: setFrequency(service.paymentType.frequency)

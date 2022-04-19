@@ -11,32 +11,33 @@ import CalltoActionPay from './CalltoActionPay';
 import CalltoActionPayGrid from './CalltoActionPayGrid';
 import CalltoActionLink from './CalltoActionLink';
 import CalltoActionLinkGrid from './CalltoActionLinkGrid';
+import { uid } from 'uid';
 
 const BlockContent = ({content}) => {
     const blocks = content.map((block, index) => {
         switch(block._type) {
             case 'typography':
-                return <Text block={block} />
+                return <Text block={block} key={uid()} />
             case 'payment':
-                return <Payment block={block} />
+                return <Payment block={block} key={uid()} />
             case 'mailchimp':
-                return <MailchimpForm block={block} />
+                return <MailchimpForm block={block} key={uid()} />
             case 'youtubeEmbed':
-                return <Youtube block={block} index={index} />
+                return <Youtube block={block} index={index} key={uid()} />
             case 'image':
-                return <Image src={urlFor(block.asset._ref)} styles={{my: 2}} />
+                return <Image src={urlFor(block.asset._ref)} styles={{my: 2}} key={uid()} />
             case 'about': 
-                return <About />
+                return <About key={uid()} />
             case 'hero':
-                return <Hero block={block} index={index} />
+                return <Hero block={block} index={index} key={uid()} />
             case 'ctaPay':
-                return <CalltoActionPay block={block} />
+                return <CalltoActionPay block={block} key={uid()} />
             case 'ctaPaySev':
-                return <CalltoActionPayGrid block={block} />
+                return <CalltoActionPayGrid block={block} key={uid()} />
             case 'ctaLink':
-                return <CalltoActionLink block={block} />
+                return <CalltoActionLink block={block} key={uid()} />
             case 'ctaLinkSev':
-                return <CalltoActionLinkGrid block={block} />
+                return <CalltoActionLinkGrid block={block} key={uid()} />
         }
     });
 

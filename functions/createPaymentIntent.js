@@ -4,7 +4,7 @@ exports.handler = (event) => {
     const paymentIntent = async () => {
         const intent = await stripe.paymentIntents.create({
             amount: Number((event.queryStringParameters.total * 100).toFixed(2)),
-            currency: 'aud',
+            currency: (event.queryStringParameters.curr === 'usd') ? 'usd' : 'aud',
             receipt_email: event.queryStringParameters.email,
             metadata: {
                 gst: Number(event.queryStringParameters.gst).toFixed(2),

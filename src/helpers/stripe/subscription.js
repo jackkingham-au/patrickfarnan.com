@@ -1,14 +1,14 @@
-const startSubscription = async (formData, service, paymentMethod) => {
+const startSubscription = async (formData, service, paymentMethod, isUsd) => {
     const response = await fetch('/.netlify/functions/startSubscription', {
         method: 'POST',
-        body: JSON.stringify({service, formData, paymentMethod}),
+        body: JSON.stringify({service, formData, paymentMethod, isUsd}),
     });
 
     const result = await response.json();
     return result;
 }
 
-export const processSubscription = async (stripe, elements, CardElement, formData, subscriptions, setCheckoutError, setLoading) => {
+export const processSubscription = async (stripe, elements, CardElement, formData, subscriptions, setCheckoutError, setLoading, isUsd) => {
     const paymentMethod = await stripe.createPaymentMethod({
         type: 'card',
         card: elements.getElement(CardElement), 
@@ -32,7 +32,7 @@ export const processSubscription = async (stripe, elements, CardElement, formDat
         setLoading(false);
     } else {
         try {
-            const results = await Promise.all(subscriptions.map(async service => await startSubscription(formData, service, paymentMethod.paymentMethod.id)));
+            const results = await Promise.all(subscriptions.map(async service => await startSubscription(formData, service, paymentMethod.paymentMethod.id, isUsd)));
             const error = results.filter(item => item.error); 
             if(error.length > 0) {
                 throw 'Error in creating subscription(s) in stripe.'

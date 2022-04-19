@@ -9,7 +9,7 @@ import { processSinglePayment } from '../../helpers/stripe/singlePayment';
 import { cardStyles, handleCardElement } from '../../helpers/stripe/card';
 import { processSubscription } from '../../helpers/stripe/subscription';
 
-const CheckoutForm = ({totals, success, subscriptions, services}) => {
+const CheckoutForm = ({totals, success, subscriptions, services, isUsd}) => {
     const stripe = useStripe();
     const elements = useElements();
 
@@ -63,7 +63,7 @@ const CheckoutForm = ({totals, success, subscriptions, services}) => {
 
             // Single Payment
             if(services.length > 0 && singleSuccess === false) {
-                const result = await processSinglePayment(stripe, elements, CardElement, formData, totals);
+                const result = await processSinglePayment(stripe, elements, CardElement, formData, totals, isUsd);
 
                 if(!result) {
                     setLoading(false);
@@ -75,7 +75,7 @@ const CheckoutForm = ({totals, success, subscriptions, services}) => {
 
             // Subscriptions
             if(subscriptions.length > 0 && subscriptionSuccess === false) {
-                const result = await processSubscription(stripe, elements, CardElement, formData, subscriptions, setCheckoutError, setLoading);
+                const result = await processSubscription(stripe, elements, CardElement, formData, subscriptions, setCheckoutError, setLoading, isUsd);
                 
                 if(result) {
                     setSubscriptionSuccess(true);

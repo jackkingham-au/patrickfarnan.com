@@ -14,7 +14,7 @@ const Payment = ({block}) => {
             getPageReference(block.nextStep.directToPage._ref, setPageRef);
         }
     }, []);
-
+ 
     const nextPage = () => {
         const url = (block.nextStep.directToCheckout) ? 'checkout' : urlToTitle(pageRef.title);
         setCart(block.addedServices);

@@ -8,13 +8,14 @@ exports.handler = async (event) => {
     const service = JSON.parse(event.body).service;
     const formData = JSON.parse(event.body).formData;
     const paymentMethod = JSON.parse(event.body).paymentMethod;
+    const isUsd = JSON.parse(event.body).isUsd;
 
     try {
         // Create the Service to Sell
         await createProduct(service);
 
         // Create a Price for the Service
-        const {price} = await createPrice(service, service._id);
+        const {price} = await createPrice(service, service._id, isUsd);
 
         // Create the Customer for the Service
         const {customer} = await createCustomer(formData);
