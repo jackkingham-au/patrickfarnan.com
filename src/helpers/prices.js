@@ -18,12 +18,13 @@ const calculateGST = (price, inclusive = true, percentage = 10) => {
     }
 }
 
-export const calculateTotals = (services, cartCount) => {
+export const calculateTotals = (services, cartCount, isAbsolute = false) => {
     if(services.length === 0) {
         return calculateGST(0);
     } else {
         const totals = services.map(service => {
-            const qty = (service.paymentType.subscription) ? 1 : cartCount[service._id];
+            const qty = (!service.paymentType.subscription) ? cartCount[service._id] : (service.paymentType.scheduling.endDateData.end === 'Custom Billing Cycles' && isAbsolute) ? service.paymentType.scheduling.endDateData.billingCycles : 1;
+            // const qty = (service.paymentType.subscription) ? 1 : cartCount[service._id];
             return (service.price.discounted) ? Number(service.price.discountedPrice * qty).toFixed(2) : Number(service.price.price * qty).toFixed(2);
         });
     

@@ -6,7 +6,7 @@ import { Divider, Box, Typography, Stack, Alert } from '@mui/material';
 const TotalPrices = ({subscriptions, services, isUsd}) => {
     const cart = getCart();
     const cartCount = countCart(cart);
-    const {gst, total, subtotal} = calculateTotals([...subscriptions, ...services], cartCount);
+    const {gst, total, subtotal} = calculateTotals([...subscriptions, ...services], cartCount, true);
     const usdSuffix = (isUsd) ? ' USD' : '';
 
     return (
