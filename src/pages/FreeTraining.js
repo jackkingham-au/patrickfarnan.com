@@ -54,7 +54,7 @@ const FreeTraining = () => {
             <Text align="center" varaint="h4">It all starts by Developing & Mastering Your Mindset</Text>
             <Text>I'll walk you through the steps it takes to master your mindset through overcoming your biggest challenge right now and start living a life of true Purpose and Joy!</Text>
             <Box sx={{bgcolor: 'primary.main', my: 4, p: 4}}>
-                <Text variant="h4" align="center">Join us for 3 Live Sessions Over 6 Days</Text>
+                <Text variant="h4" align="center">Join us for 3 Live Sessions Over 5 Days</Text>
                 <Text variant="body1" align="center">*delivered live via Zoom</Text>
                 <Text>Group Calls</Text>
                 <Text>DAY 1 - Sunday May 15 @ 6:30pm AEST (Melbourne, AU)</Text>
