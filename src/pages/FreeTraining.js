@@ -21,7 +21,7 @@ const FreeTraining = () => {
     return (
         <Container>
             <Image src="patrick-farnan-city-backdrop.jpg" alt="Patrick Farnan City Backdrop" />
-            <Text color="primary" variant="h4" align="center">FREE 6 Day Training to Master Your Mindset</Text>
+            <Text color="primary" variant="h4" align="center">FREE 5 Day Training to Master Your Mindset</Text>
             <Box sx={{bgcolor: 'primary.main', p: 4, my: 2}}>
                 <Text>Right now people are so busy trying to fit everything in... and they're so tired running from one commitment to another...and they feel stretched too thin.</Text>
                 <Text color="common.white">Problem is, you aren't getting more time. You only get 24 hours a day.</Text>
@@ -35,7 +35,7 @@ const FreeTraining = () => {
             <Text>Your mindset helps guide your life in the direction YOU want and remove time-wasters and <Text inline italic color="primary">have greater quality time with the ones around you</Text>.</Text>
             <Spacer />
             <Text align="center">When I teach my Mastery Training to my clients I help create your Elite Performance in your life so that you can master your mindset, energy, relationships and more.</Text>
-            <Text align="center">Master Your Mindset FREE 6 Day Immersive Starts Sunday 15th May, and runs for 5 days concluding on Thursday 19th May.</Text>
+            <Text align="center">Master Your Mindset FREE 5 Day Immersive Starts Sunday 15th May, and runs for 5 days concluding on Thursday 19th May.</Text>
             <Text align="center">You won't want to miss it!!</Text>
             <Spacer />
             <Image src="patrick-farnan-formal-city.jpg" alt="Patrick Farnan Formal City" />
@@ -45,10 +45,10 @@ const FreeTraining = () => {
             <Text align="center">...to choose a life that you make, rather than a life dictated by others.</Text>
             <Text>Are you ready to go on a journey for a life on your terms?</Text>
             <Text>Are you ready to master your mindset for Honest & Impactful Life Experiences?</Text>
-            <Text>Then definitely join me in my FREE 6 Day Immersion to Master Your Mindset!</Text>
+            <Text>Then definitely join me in my FREE 5 Day Immersion to Master Your Mindset!</Text>
             <Image src="patrick-farnan-portrait.jpg" alt="Patrick Farnan Portrait" />
             <Text>Did you know that there's a <Text color="primary" inline>way you can Develop your Mindset</Text> that can give you more clarity, more focus, more energy, and more certainly immediately.</Text>
-            <Text>In 6 Days, I'll show you step-by-step how to Overcome Your Biggest Challenge Right Now.</Text>
+            <Text>In 5 Days, I'll show you step-by-step how to Overcome Your Biggest Challenge Right Now.</Text>
             <Image src="patrick-farnan-formal.jpg" alt="Patrick Farnan Formal" />
             <Text align="center" color="primary">Want more money? Want better relationships? Want more time? Want better health? Want a greater impact in life?</Text>
             <Text align="center" varaint="h4">It all starts by Developing & Mastering Your Mindset</Text>
