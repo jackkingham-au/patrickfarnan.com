@@ -35,7 +35,7 @@ const FreeTraining = () => {
             <Text>Your mindset helps guide your life in the direction YOU want and remove time-wasters and <Text inline italic color="primary">have greater quality time with the ones around you</Text>.</Text>
             <Spacer />
             <Text align="center">When I teach my Mastery Training to my clients I help create your Elite Performance in your life so that you can master your mindset, energy, relationships and more.</Text>
-            <Text align="center">Master Your Mindset FREE 5 Day Immersive Starts Sunday 15th May, and runs for 5 days concluding on Thursday 19th May.</Text>
+            <Text align="center">Master Your Mindset FREE 5 Day Immersive Starts Sunday 19th June, and runs for 5 days concluding on Thursday 23rd June.</Text>
             <Text align="center">You won't want to miss it!!</Text>
             <Spacer />
             <Image src="patrick-farnan-formal-city.jpg" alt="Patrick Farnan Formal City" />
@@ -57,11 +57,11 @@ const FreeTraining = () => {
                 <Text variant="h4" align="center">Join us for 3 Live Sessions Over 5 Days</Text>
                 <Text variant="body1" align="center">*delivered live via Zoom</Text>
                 <Text>Group Calls</Text>
-                <Text>DAY 1 - Sunday May 15 @ 6:30pm AEST (Melbourne, AU)</Text>
+                <Text>DAY 1 - Sunday June 19 @ 6:30pm AEST (Melbourne, AU)</Text>
                 <Text>DAY 2 - Implementation Day</Text>
-                <Text>DAY 3 - Tuesday May 17 @ 6:30pm AEST (Melbourne, AU)</Text>
+                <Text>DAY 3 - Tuesday June 21 @ 6:30pm AEST (Melbourne, AU)</Text>
                 <Text>DAY 4 - Implementation Day</Text>
-                <Text>DAY 5 - Thursday May 19 @ 6:30pm AEST (Melbourne, AU) - FINAL ZOOM GROUP CALL</Text>
+                <Text>DAY 5 - Thursday June 23 @ 6:30pm AEST (Melbourne, AU) - FINAL ZOOM GROUP CALL</Text>
             </Box>
             <MailchimpForm audience="training" minimal block={mailchimpData} />
             <Text align="center" variant="h3" color="primary">Past Client Testimonials</Text>
