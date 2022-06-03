@@ -6,6 +6,8 @@ const setFrequency = freq => {
             return 'day';
         case 'Weekly': 
             return 'week';
+        case 'Fortnightly':
+            return 'week';
         case 'Monthly':
             return 'month';
         case 'Yearly':
@@ -20,7 +22,8 @@ module.exports = async (service, product, isUsd) => {
             currency: (isUsd) ? 'usd' : 'aud',
             product,
             recurring: {
-                interval: setFrequency(service.paymentType.frequency)
+                interval: setFrequency(service.paymentType.frequency),
+                interval_count: (service.paymentType.frequency == 'Fortnightly') ? 2 : 1,
             }, 
             unit_amount: (service.price.discounted) ? (service.price.discountedPrice * 100) : (service.price.price * 100),
             metadata: {

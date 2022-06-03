@@ -12,9 +12,9 @@ import { calculateTotals } from '../helpers/prices';
 
 // Public Key Goes Here
 // TEST KEY - JACK KINGHAM
-// const stripePromise = loadStripe('pk_test_rCLBczK31p9gB4XuuLXnv17p00UBGlD13V');
+const stripePromise = loadStripe('pk_test_rCLBczK31p9gB4XuuLXnv17p00UBGlD13V');
 // LIVE KEY - PATRICK FARNAN
-const stripePromise = loadStripe('pk_live_51HTnMaAixDvhCM2hYAgyzgjJcCQ62YuvO8kCAe7sHGg60rfqbXHPdE0lbxH1KiRpXU9sG1HIkKvSau3HjWAjfJ1G00CvD3dt3S');
+// const stripePromise = loadStripe('pk_live_51HTnMaAixDvhCM2hYAgyzgjJcCQ62YuvO8kCAe7sHGg60rfqbXHPdE0lbxH1KiRpXU9sG1HIkKvSau3HjWAjfJ1G00CvD3dt3S');
 
 const Checkout = () => {
     const cart = getCart();
