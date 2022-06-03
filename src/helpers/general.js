@@ -20,6 +20,8 @@ const setCycle = service => {
             return `After ${cycles} Days`;
         case 'Weekly':
             return `After ${cycles} Weeks`;
+        case 'Fortnightly':
+            return `After ${cycles} Fortnights`;
         case 'Monthly':
             return `After ${cycles} Months`;
         case 'Yearly':
